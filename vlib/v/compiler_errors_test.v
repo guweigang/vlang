@@ -251,6 +251,7 @@ fn (mut tasks Tasks) run() {
 		m_skip_files << 'vlib/v/checker/tests/missing_c_lib_header_1.vv'
 		m_skip_files << 'vlib/v/checker/tests/missing_c_lib_header_with_explanation_2.vv'
 		m_skip_files << 'vlib/v/checker/tests/comptime_value_d_in_include_errors.vv'
+		m_skip_files << 'vlib/v/checker/tests/missing_shader_header_1.vv'
 	}
 	$if msvc {
 		m_skip_files << 'vlib/v/checker/tests/asm_alias_does_not_exist.vv'
@@ -259,6 +260,7 @@ fn (mut tasks Tasks) run() {
 		m_skip_files << 'vlib/v/checker/tests/missing_c_lib_header_1.vv'
 		m_skip_files << 'vlib/v/checker/tests/missing_c_lib_header_with_explanation_2.vv'
 		m_skip_files << 'vlib/v/checker/tests/comptime_value_d_in_include_errors.vv'
+		m_skip_files << 'vlib/v/checker/tests/missing_shader_header_1.vv'
 	}
 	$if windows {
 		m_skip_files << 'vlib/v/checker/tests/invalid_utf8_string.vv'
