@@ -10,14 +10,18 @@ module os
 // declared in builtin/cfns.c.v which take voidptr.
 __global g_v_os_execute_mutex_storage = [128]u8{}
 
+fn v_os_execute_mutex_ptr() voidptr {
+	return unsafe { voidptr(&g_v_os_execute_mutex_storage[0]) }
+}
+
 fn init() {
-	C.pthread_mutex_init(&g_v_os_execute_mutex_storage[0], unsafe { nil })
+	C.pthread_mutex_init(v_os_execute_mutex_ptr(), unsafe { nil })
 }
 
 fn v_os_execute_lock() {
-	C.pthread_mutex_lock(&g_v_os_execute_mutex_storage[0])
+	C.pthread_mutex_lock(v_os_execute_mutex_ptr())
 }
 
 fn v_os_execute_unlock() {
-	C.pthread_mutex_unlock(&g_v_os_execute_mutex_storage[0])
+	C.pthread_mutex_unlock(v_os_execute_mutex_ptr())
 }
