@@ -261,6 +261,14 @@ fn main() {
 }
 ```
 
+### Reload an OpenSSL listener certificate
+
+With `-d use_openssl`, an app can implement `veb.TlsCertificateReloadApp` to receive a
+reload callback for each listener address. Invoke the callback after replacing the
+configured certificate chain and key files. The registration method returns a function
+that removes the callback when the listener exits. Successful reloads apply to new TLS
+sessions, and existing connections can continue using their negotiated sessions.
+
 ## Graceful shutdown
 
 When running with `-d new_veb`, the underlying server supports graceful
@@ -1635,14 +1643,6 @@ works with mbedTLS and OpenSSL. Use `ctx.takeover_conn()` for plain TCP.
 timeout. If the route needs to notify the transport to shut down, obtain the socket handle
 with `ctx.tls_socket_handle()` before takeover. TLS I/O and connection cleanup belong to
 the owner of the `TlsConn`.
-
-### Reload an OpenSSL listener certificate
-
-With `-d use_openssl`, an app can implement `veb.TlsCertificateReloadApp` to receive a
-reload callback for each listener address. Invoke the callback after replacing the
-configured certificate chain and key files. The registration method returns a function
-that removes the callback when the listener exits. Successful reloads apply to new TLS
-sessions, and existing connections can continue using their negotiated sessions.
 
 ### Empty Result
 
